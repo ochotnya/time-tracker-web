@@ -7,4 +7,7 @@ const DownloadTypes = async (): Promise<Array<IActivityType>> => {
   return response.data.types;
 };
 
-export { DownloadTypes };
+const AddType = async (props: IActivityType) => {
+  const response = await axios.post("http://localhost:3000/types", props);
+};
+export { DownloadTypes, AddType };

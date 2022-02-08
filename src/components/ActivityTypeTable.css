@@ -8,7 +8,8 @@
 }
 
 .typeTable thead tr {
-  background-color: aquamarine;
+  background-color: rgb(74, 126, 236);
+  color: white;
   text-align: left;
   font-weight: bold;
 }
@@ -24,4 +25,26 @@
 
 .typeTable tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
+}
+
+.typeTable button {
+  border: none;
+  display: flex;
+  width: 100%;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.typeTable button:hover {
+  cursor: pointer;
+}
+.typeTable .button-remove {
+  background-color: #ff3e3e;
+}
+
+.typeTable .button-add {
+  background-color: #50b137;
 }

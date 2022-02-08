@@ -26,10 +26,10 @@ function ActivityTypesPage() {
       <div className="pageLayout">
         <div className="header">
           <p className="title">Activity Types</p>
-          <button className="headerMainButton">
+          {/* <button className="headerMainButton">
             <IoIosAddCircleOutline size={25} />
             Create new type
-          </button>
+          </button> */}
         </div>
         <div className="content">
           {/* <div className="list">
