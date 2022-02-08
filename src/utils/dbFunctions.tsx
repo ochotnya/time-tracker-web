@@ -7,7 +7,13 @@ const DownloadTypes = async (): Promise<Array<IActivityType>> => {
   return response.data.types;
 };
 
-const AddType = async (props: IActivityType) => {
+const AddType = async (props: IActivityType): Promise<void> => {
   const response = await axios.post("http://localhost:3000/types", props);
 };
-export { DownloadTypes, AddType };
+
+const RemoveType = async (props: IActivityType): Promise<void> => {
+  const response = await axios.delete(
+    `http://localhost:3000/types/${props._id}`
+  );
+};
+export { DownloadTypes, AddType, RemoveType };

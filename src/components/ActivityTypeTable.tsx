@@ -5,14 +5,17 @@ import {
   IoIosAddCircleOutline,
   IoIosRemoveCircleOutline,
 } from "react-icons/io";
+import { BsCircleFill } from "react-icons/bs";
 
-import { AddType } from "../utils/dbFunctions";
 interface ITable {
   elements: IActivityType[];
+  refreshData: () => Promise<void>;
+  addData: (props: IActivityType) => Promise<void>;
+  removeData: (props: IActivityType) => Promise<void>;
 }
 function ActivityTypeTable(props: ITable) {
   const [newName, setNewName] = useState<string>("");
-  const [newColor, setNewColor] = useState<string>("");
+  const [newColor, setNewColor] = useState<string>("#123456");
   const [newDesc, setNewDesc] = useState<string>("");
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +28,6 @@ function ActivityTypeTable(props: ITable) {
     setNewDesc(e.target.value);
   };
 
-  const saveNewType = () => {
-    AddType({ name: newName, color: newColor, desc: newDesc, _id: "new" });
-  };
   return (
     <table className="typeTable">
       <thead>
@@ -41,12 +41,17 @@ function ActivityTypeTable(props: ITable) {
       <tbody>
         {props.elements.map((element) => {
           return (
-            <tr>
+            <tr key={element._id}>
               <td>{element.name}</td>
-              <td>{element.color}</td>
+              <td>
+                <BsCircleFill size={20} color={element.color} />
+              </td>
               <td>{element.desc ? element.desc : "no description"}</td>
               <td>
-                <button className="button-remove">
+                <button
+                  className="button-remove"
+                  onClick={async () => await props.removeData(element)}
+                >
                   <IoIosRemoveCircleOutline size={20} />
                 </button>
               </td>
@@ -55,24 +60,45 @@ function ActivityTypeTable(props: ITable) {
         })}
         <tr>
           <td>
-            <input value={newName} placeholder="name" onChange={updateName} />
+            <input
+              maxLength={20}
+              value={newName}
+              placeholder="name*"
+              onChange={updateName}
+            />
           </td>
           <td>
             <input
+              type="color"
+              id="favcolor"
+              name="favcolor"
               value={newColor}
-              placeholder="color"
               onChange={updateColor}
             />
           </td>
           <td>
             <input
+              maxLength={50}
               value={newDesc}
               placeholder="description"
               onChange={updateDesc}
             />
           </td>
           <td>
-            <button className="button-add" onClick={saveNewType}>
+            <button
+              className="button-add"
+              onClick={async () => {
+                await props.addData({
+                  name: newName,
+                  color: newColor,
+                  desc: newDesc,
+                  _id: "new",
+                });
+                setNewName("");
+                setNewDesc("");
+                setNewColor("#eeeeee");
+              }}
+            >
               <IoIosAddCircleOutline size={20} />
             </button>
           </td>

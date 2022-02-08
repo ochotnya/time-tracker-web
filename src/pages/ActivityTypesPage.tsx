@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SideMenu from "../components/menu/SideMenu";
 import "./Page.css";
-import { DownloadTypes } from "../utils/dbFunctions";
+import { AddType, DownloadTypes, RemoveType } from "../utils/dbFunctions";
 import IActivityType from "../interfaces/IActivityType";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import ActivityTypeTable from "../components/ActivityTypeTable";
@@ -13,7 +13,22 @@ function ActivityTypesPage() {
     try {
       const response = await DownloadTypes();
       setTypesList(response);
-    } catch (error) {}
+    } catch (error) {
+      console.log("download error");
+    }
+    console.log(typesList);
+  };
+
+  const saveNewType = async (props: IActivityType) => {
+    if (props.name) {
+      await AddType(props);
+      downloadTypes();
+    }
+  };
+
+  const removeType = async (props: IActivityType) => {
+    await RemoveType(props);
+    downloadTypes();
   };
 
   useEffect(() => {
@@ -26,18 +41,14 @@ function ActivityTypesPage() {
       <div className="pageLayout">
         <div className="header">
           <p className="title">Activity Types</p>
-          {/* <button className="headerMainButton">
-            <IoIosAddCircleOutline size={25} />
-            Create new type
-          </button> */}
         </div>
         <div className="content">
-          {/* <div className="list">
-            {typesList.map((element) => (
-              <ActivityTypeRow key={element._id} object={element} />
-            ))}
-          </div> */}
-          <ActivityTypeTable elements={typesList} />
+          <ActivityTypeTable
+            elements={typesList}
+            refreshData={() => downloadTypes()}
+            addData={saveNewType}
+            removeData={removeType}
+          />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@
   margin: 25px 0px;
   font-size: 0.9em;
   min-width: 400px;
+  box-shadow: 0px 0px 10px 1px rgb(196, 196, 196);
 }
 
 .typeTable thead tr {
@@ -47,4 +48,13 @@
 
 .typeTable .button-add {
   background-color: #50b137;
+}
+
+.typeTable input {
+  border-radius: 5px;
+  border: 1px #dddddd solid;
+}
+.fillRequired {
+  background-color: #ff4a4a;
+  color: white;
 }
