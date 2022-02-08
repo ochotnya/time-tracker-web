@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from "react";
 import SideMenu from "../components/menu/SideMenu";
 import "./Page.css";
-import axios from "axios";
+import { DownloadTypes } from "../utils/dbFunctions";
+import IActivityType from "../interfaces/IActivityType";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 function ActivityTypesPage() {
-  const [typesList, setTypesList] = useState({});
+  const [typesList, setTypesList] = useState<IActivityType[]>([]);
 
   const downloadTypes = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/types");
-      console.log(response);
+      const response = await DownloadTypes();
+      setTypesList(response);
     } catch (error) {}
   };
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    downloadTypes();
+  }, []);
 
   return (
     <div className="page">
       <SideMenu />
-      <div className="content">Types</div>
-      <button onClick={downloadTypes}>dddd</button>
+      <div className="pageLayout">
+        <div className="header">
+          <p className="title">Activity Types</p>
+          <button className="headerMainButton">
+            <IoIosAddCircleOutline size={25} />
+            Create new type
+          </button>
+        </div>
+        <div className="content">
+          {/* {typesList.map((element, index) => (
+            <p key={index}>{element.name}</p>
+          ))} */}
+        </div>
+      </div>
     </div>
   );
 }
