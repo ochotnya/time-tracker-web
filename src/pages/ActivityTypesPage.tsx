@@ -4,6 +4,7 @@ import "./Page.css";
 import { DownloadTypes } from "../utils/dbFunctions";
 import IActivityType from "../interfaces/IActivityType";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import ActivityTypeTable from "../components/ActivityTypeTable";
 
 function ActivityTypesPage() {
   const [typesList, setTypesList] = useState<IActivityType[]>([]);
@@ -31,9 +32,12 @@ function ActivityTypesPage() {
           </button>
         </div>
         <div className="content">
-          {/* {typesList.map((element, index) => (
-            <p key={index}>{element.name}</p>
-          ))} */}
+          {/* <div className="list">
+            {typesList.map((element) => (
+              <ActivityTypeRow key={element._id} object={element} />
+            ))}
+          </div> */}
+          <ActivityTypeTable elements={typesList} />
         </div>
       </div>
     </div>

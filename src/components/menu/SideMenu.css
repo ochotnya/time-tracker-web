@@ -1,11 +1,11 @@
-.container {
+.menuContainer {
   height: 100vh;
   width: 12rem;
   background-color: rgb(57, 128, 221);
   color: white;
 }
 
-.container a {
+.menuContainer a {
   text-decoration: none;
   color: inherit;
 }

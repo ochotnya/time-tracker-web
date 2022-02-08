@@ -51,4 +51,14 @@
   background-color: rgb(107, 209, 60);
 }
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  /* background-color: yellow;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); */
 }

@@ -1,0 +1,27 @@
+.typeTable {
+  border-collapse: collapse;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  margin: 25px 0px;
+  font-size: 0.9em;
+  min-width: 400px;
+}
+
+.typeTable thead tr {
+  background-color: aquamarine;
+  text-align: left;
+  font-weight: bold;
+}
+
+.typeTable th,
+.typeTable td {
+  padding: 12px 15px;
+}
+
+.typeTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.typeTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}

@@ -4,7 +4,7 @@ import "./SideMenu.css";
 import { RiDashboardFill, RiFolder3Fill, RiListOrdered } from "react-icons/ri";
 function SideMenu() {
   return (
-    <div className="container">
+    <div className="menuContainer">
       <MenuItem
         text="Dashboard"
         path="/"
