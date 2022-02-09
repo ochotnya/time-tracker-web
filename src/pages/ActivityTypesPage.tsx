@@ -16,7 +16,6 @@ function ActivityTypesPage() {
     } catch (error) {
       console.log("download error");
     }
-    console.log(typesList);
   };
 
   const saveNewType = async (props: IActivityType) => {

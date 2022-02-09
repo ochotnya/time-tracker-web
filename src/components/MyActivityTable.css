@@ -1,0 +1,56 @@
+.my-activity-table {
+  border-collapse: collapse;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  margin: 25px 0px;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0px 0px 10px 1px rgb(196, 196, 196);
+}
+
+.my-activity-table thead tr {
+  background-color: rgb(74, 126, 236);
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+.my-activity-table th,
+.my-activity-table td {
+  padding: 12px 15px;
+}
+
+.my-activity-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+/* .my-activity-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+} */
+
+.my-activity-table button {
+  border: none;
+  display: flex;
+  width: 100%;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-activity-table button:hover {
+  cursor: pointer;
+}
+.my-activity-table .button-remove {
+  background-color: #ff3e3e;
+}
+
+.my-activity-table .button-add {
+  background-color: #50b137;
+}
+
+.my-activity-table input {
+  border-radius: 5px;
+  border: 1px #dddddd solid;
+}
