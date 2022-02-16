@@ -18,12 +18,13 @@ import {
 import "./MyActivityTable.css";
 
 function MyActivityTable() {
+  const now = new Date().toISOString().slice(0, -8);
   const [typesList, setTypesList] = useState<IActivityType[]>([]);
   const [activities, setActivities] = useState<IActivity[]>([]);
   const [desc, setDesc] = useState("");
-  const [type, setType] = useState("");
-  const [start, setStart] = useState(Date.now.toString());
-  const [end, setEnd] = useState(Date.now.toString());
+  const [type, setType] = useState("not selected");
+  const [start, setStart] = useState(now);
+  const [end, setEnd] = useState(now);
 
   const updateDesc = (e: ChangeEvent<HTMLInputElement>) => {
     setDesc(e.target.value);
@@ -76,7 +77,9 @@ function MyActivityTable() {
     downloadTypes();
     downloadActivities();
   }, []);
+
   return (
+    // <div className="table-container">
     <table className="my-activity-table">
       <thead>
         <tr>
@@ -90,6 +93,9 @@ function MyActivityTable() {
       </thead>
       <tbody>
         {activities.map((activity) => {
+          const startDate = new Date(activity.start);
+          const endDate = new Date(activity.end);
+          const diff = endDate.getHours() - startDate.getHours();
           return (
             <tr
               key={activity._id}
@@ -99,13 +105,13 @@ function MyActivityTable() {
                 )?.color,
               }}
             >
-              <td>{activity.desc}</td>
-              <td>
+              <td aria-label="Description">{activity.desc}</td>
+              <td aria-label="Type">
                 {typesList.find((item) => item._id === activity.type)?.name}
               </td>
-              <td>{activity.start}</td>
-              <td>{activity.end}</td>
-              <td>4</td>
+              <td aria-label="Start">{startDate.toLocaleString("pl-PL")}</td>
+              <td aria-label="End">{endDate.toLocaleString("pl-PL")}</td>
+              <td aria-label="Hours">{diff}</td>
               <td>
                 <button className="button-remove">
                   <IoIosRemoveCircleOutline size={20} />
@@ -117,7 +123,7 @@ function MyActivityTable() {
         <tr>
           <td>
             <input
-              maxLength={20}
+              maxLength={50}
               placeholder="Description*"
               value={desc}
               onChange={updateDesc}
@@ -125,6 +131,9 @@ function MyActivityTable() {
           </td>
           <td>
             <select value={type} onChange={updateType}>
+              <option key="not selected" value="not selected">
+                select...
+              </option>
               {typesList.map((type) => (
                 <option key={type._id} value={type._id}>
                   {type.name}
@@ -138,17 +147,21 @@ function MyActivityTable() {
           <td>
             <input type="datetime-local" onChange={updateEnd} value={end} />
           </td>
+          <td>-</td>
           <td>
-            <button onClick={downloadActivities}>elelelel</button>
-          </td>
-          <td>
-            <button className="button-add" onClick={saveEntry}>
-              <IoIosAddCircleOutline size={20} />
-            </button>
+            {desc !== "" &&
+              type !== "" &&
+              type !== "not selected" &&
+              end > start && (
+                <button className="button-add" onClick={saveEntry}>
+                  <IoIosAddCircleOutline size={20} />
+                </button>
+              )}
           </td>
         </tr>
       </tbody>
     </table>
+    // </div>
   );
 }
 

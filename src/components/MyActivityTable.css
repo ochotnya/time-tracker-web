@@ -1,10 +1,9 @@
 .my-activity-table {
+  width: 100%;
   border-collapse: collapse;
   border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  margin: 25px 0px;
+  margin: 10px 0px;
   font-size: 0.9em;
-  min-width: 400px;
   box-shadow: 0px 0px 10px 1px rgb(196, 196, 196);
 }
 
@@ -13,21 +12,17 @@
   color: white;
   text-align: left;
   font-weight: bold;
+  margin: 10px;
 }
-
-.my-activity-table th,
-.my-activity-table td {
-  padding: 12px 15px;
+.my-activity-table thead th {
+  padding: 0.5rem;
 }
-
 .my-activity-table tbody tr {
   border-bottom: 1px solid #dddddd;
 }
-
-/* .my-activity-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-} */
-
+.my-activity-table tbody td {
+  padding: 0.5rem;
+}
 .my-activity-table button {
   border: none;
   display: flex;
@@ -53,4 +48,37 @@
 .my-activity-table input {
   border-radius: 5px;
   border: 1px #dddddd solid;
+}
+* {
+  box-sizing: border-box;
+}
+@media (max-width: 1100px) {
+  .my-activity-table button {
+    max-width: 100%;
+  }
+  .my-activity-table thead {
+    display: none;
+  }
+  .my-activity-table,
+  .my-activity-table tbody,
+  .my-activity-table tr,
+  .my-activity-table td {
+    display: block;
+    width: 100%;
+  }
+  .my-activity-table td {
+    text-align: right;
+    padding: 0.2rem;
+    border-bottom: 1px solid #dddddd;
+  }
+  .my-activity-table tr {
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    padding: 0.2rem;
+  }
+  .my-activity-table td::before {
+    content: attr(aria-label);
+    float: left;
+    font-weight: bold;
+  }
 }

@@ -55,6 +55,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* background-color: greenyellow; */
+  padding: 10px;
 }
 
 .list {
